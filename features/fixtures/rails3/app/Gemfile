@@ -11,3 +11,8 @@ gem 'jquery-rails'
 gem "bugsnag"
 
 gem "warden"
+
+group :dj, optional: true do
+    gem "delayed_job"
+    gem "delayed_job_active_record"
+end

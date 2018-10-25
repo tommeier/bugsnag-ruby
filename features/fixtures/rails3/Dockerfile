@@ -2,12 +2,13 @@ ARG RUBY_VERSION
 FROM ruby:$RUBY_VERSION
 
 ARG APP_PATH
+ARG GEM_GROUPS
 
 RUN mkdir -p $APP_PATH
 WORKDIR $APP_PATH
 
 COPY app/Gemfile $APP_PATH
-RUN bundle install
+RUN bundle install --with $GEM_GROUPS
 
 COPY app $APP_PATH
 

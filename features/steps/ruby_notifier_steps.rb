@@ -75,3 +75,9 @@ Then("the event {string} is {string}") do |key, value|
     Then the event "#{key}" equals "#{value}"
   }
 end
+When("I setup delayed_job for the service {string}") do |service|
+  steps %Q{
+    When I run the command "bundle exec rails generate delayed_job:active_record" on the service "#{service}"
+    And I run the command "bundle exec rake db:migrate" on the service "#{service}"
+  }
+end

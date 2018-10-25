@@ -75,6 +75,7 @@ services:
       args:
         - RUBY_VERSION
         - APP_PATH
+        - GEM_GROUPS
     environment:
       - BUGSNAG_API_KEY
       - http_proxy
@@ -111,6 +112,7 @@ services:
       args:
         - RUBY_VERSION
         - APP_PATH
+        - GEM_GROUPS
     environment:
       - BUGSNAG_API_KEY
       - http_proxy
@@ -147,6 +149,7 @@ services:
       args:
         - RUBY_VERSION
         - APP_PATH
+        - GEM_GROUPS
     environment:
       - BUGSNAG_API_KEY
       - http_proxy

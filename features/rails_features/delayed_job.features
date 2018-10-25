@@ -1,0 +1,28 @@
+Feature: Bugsnag raises errors in delayed job tasks
+
+Background:
+  Given I set environment variable "BUGSNAG_API_KEY" to "a35a2a72bd230ac0aa0f52715bbdc6aa"
+  Given I set environment variable "MAZE_API_KEY" to "a35a2a72bd230ac0aa0f52715bbdc6aa"
+  And I set environment variable "APP_PATH" to "/usr/src"
+  And I set environment variable "GEM_GROUPS" to "dj"
+  And I configure the bugsnag endpoint
+
+Scenario Outline: A failing task sends a report
+  When I set environment variable "RUBY_VERSION" to "<ruby_version>"
+  And I start the service "rails<rails_version>"
+  And I wait for the app to respond on port "6128<rails_version>"
+  And I setup delayed_job for the service "rails<rails_version>"
+  When I run the command "bundle exec script/rails runner dj_scripts/unhandled.rb" on the service "rails<rails_version>"
+  And I run the command "bundle exec script/delayed_job" on the service "rails<rails_version>"
+  And I wait for 10 seconds
+  Then I should receive a request
+  And the request is valid for the error reporting API
+  And the request used the Ruby notifier
+  And the request contained the api key "a35a2a72bd230ac0aa0f52715bbdc6aa"
+  And the payload field "events" is an array with 1 element
+  And the event "unhandled" is true
+
+  Examples:
+    | ruby_version | rails_version |
+    | 2.0          | 3             |
+    | 2.1          | 3             |
