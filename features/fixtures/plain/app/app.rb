@@ -10,7 +10,6 @@ def configure_basics
 end
 
 def configure_using_environment
-  pp ENV
   Bugsnag.configure do |conf|
     conf.app_type = ENV["BUGSNAG_APP_TYPE"] if ENV.include? "BUGSNAG_APP_TYPE"
     conf.app_version = ENV["BUGSNAG_APP_VERSION"] if ENV.include? "BUGSNAG_APP_VERSION"
