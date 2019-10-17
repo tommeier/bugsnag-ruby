@@ -42,8 +42,8 @@ services:
       default:
         aliases:
           - plain
-    depends_on:
-      - proxy
+    # depends_on:
+    #   - proxy
 
   delayed_job:
     build:
