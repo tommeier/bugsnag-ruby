@@ -3,7 +3,7 @@ Feature: Plain unhandled errors
 Scenario Outline: An unhandled error sends a report
   Given I run the service "plain-ruby" with the command "bundle exec ruby unhandled/<file>.rb"
   And I wait to receive a request
-  Then the request is valid for the error reporting API version "4" for the "Ruby Bugsnag Notifier" notifier
+  Then the request is valid for the error reporting API version "4.0" for the "Ruby Bugsnag Notifier"
   And the event "unhandled" is true
   And the event "severity" equals "error"
   And the event "severityReason.type" equals "unhandledException"
@@ -25,7 +25,7 @@ Scenario Outline: An unhandled error sends a report
 Scenario Outline: An unhandled error doesn't send a report
   When I run the service "plain-ruby" with the command "bundle exec ruby unhandled/<file>.rb"
   And I wait for 1 second
-  Then I should receive 0 requests
+  Then I should receive no requests
 
   Examples:
   | file          |

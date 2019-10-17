@@ -3,7 +3,7 @@ Feature: Plain handled errors
 Scenario: A rescued exception sends a report
   When I run the service "plain-ruby" with the command "bundle exec ruby handled/notify_exception.rb"
   And I wait to receive a request
-  Then the request is valid for the error reporting API version "4" for the "Ruby Bugsnag Notifier" notifier
+  Then the request is valid for the error reporting API version "4.0" for the "Ruby Bugsnag Notifier"
   And the event "unhandled" is false
   And the event "severity" equals "warning"
   And the event "severityReason.type" equals "handledException"
@@ -14,7 +14,7 @@ Scenario: A rescued exception sends a report
 Scenario: A notified string sends a report
   When I run the service "plain-ruby" with the command "bundle exec ruby handled/notify_string.rb"
   And I wait to receive a request
-  Then the request is valid for the error reporting API version "4" for the "Ruby Bugsnag Notifier" notifier
+  Then the request is valid for the error reporting API version "4.0" for the "Ruby Bugsnag Notifier"
   And the event "unhandled" is false
   And the event "severity" equals "warning"
   And the event "severityReason.type" equals "handledException"
@@ -25,12 +25,12 @@ Scenario: A notified string sends a report
 Scenario: A handled error doesn't send a report when the :skip_bugsnag flag is set
   When I run the service "plain-ruby" with the command "bundle exec ruby handled/ignore_exception.rb"
   And I wait for 1 second
-  Then I should receive 0 requests
+  Then I should receive no requests
 
 Scenario: A handled error can attach metadata in a block
   When I run the service "plain-ruby" with the command "bundle exec ruby handled/block_metadata.rb"
   And I wait to receive a request
-  Then the request is valid for the error reporting API version "4" for the "Ruby Bugsnag Notifier" notifier
+  Then the request is valid for the error reporting API version "4.0" for the "Ruby Bugsnag Notifier"
   And the event "unhandled" is false
   And the event "severity" equals "warning"
   And the event "severityReason.type" equals "handledException"

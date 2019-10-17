@@ -4,7 +4,7 @@ Scenario Outline: Metadata can be added to a report using add_tab
   Given I set environment variable "CALLBACK_INITIATOR" to "<initiator>"
   When I run the service "plain-ruby" with the command "bundle exec ruby report_modification/add_tab.rb"
   And I wait to receive a request
-  Then the request is valid for the error reporting API version "4" for the "Ruby Bugsnag Notifier" notifier
+  Then the request is valid for the error reporting API version "4.0" for the "Ruby Bugsnag Notifier"
   And the event "metaData.additional_metadata.foo" equals "foo"
   And the event "metaData.additional_metadata.bar.0" equals "b"
   And the event "metaData.additional_metadata.bar.1" equals "a"
@@ -20,7 +20,7 @@ Scenario Outline: Metadata can be added to an existing tab using add_tab
   Given I set environment variable "CALLBACK_INITIATOR" to "<initiator>"
   When I run the service "plain-ruby" with the command "bundle exec ruby report_modification/add_tab_existing.rb"
   And I wait to receive a request
-  Then the request is valid for the error reporting API version "4" for the "Ruby Bugsnag Notifier" notifier
+  Then the request is valid for the error reporting API version "4.0" for the "Ruby Bugsnag Notifier"
   And the event "metaData.additional_metadata.foo" equals "foo"
   And the event "metaData.additional_metadata.bar.0" equals "b"
   And the event "metaData.additional_metadata.bar.1" equals "a"
@@ -38,7 +38,7 @@ Scenario Outline: Metadata can be overwritten using add_tab
   Given I set environment variable "CALLBACK_INITIATOR" to "<initiator>"
   When I run the service "plain-ruby" with the command "bundle exec ruby report_modification/add_tab_override.rb"
   And I wait to receive a request
-  Then the request is valid for the error reporting API version "4" for the "Ruby Bugsnag Notifier" notifier
+  Then the request is valid for the error reporting API version "4.0" for the "Ruby Bugsnag Notifier"
   And the event "metaData.additional_metadata.foo" equals "foo"
   And the event "metaData.additional_metadata.bar" equals "bar"
 
