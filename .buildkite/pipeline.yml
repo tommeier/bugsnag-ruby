@@ -18,5 +18,4 @@ steps:
         use-aliases: true
     env:
       RUBY_VERSION: 2.6
-      VERBOSE: true
     command: features/plain_features
