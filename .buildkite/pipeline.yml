@@ -18,7 +18,7 @@ steps:
         use-aliases: true
     env:
       RUBY_VERSION: 2.6
-    command: features/plain_features --tags "not @wip"
+    command: features/plain_features/release_stages.feature --tags "not @wip"
 
   # - label: ':ruby: :rails: Rails 6 Ruby 2.6 tests'
   #   plugins:
