@@ -7,6 +7,7 @@ Scenario: Doesn't notify in the wrong release stage
   And I wait for 1 second
   Then I should receive no requests
 
+@wip
 Scenario: Does notify in the correct release stage
   Given I set environment variable "BUGSNAG_NOTIFY_RELEASE_STAGE" to "stage_one"
   And I set environment variable "BUGSNAG_RELEASE_STAGE" to "stage_one"
