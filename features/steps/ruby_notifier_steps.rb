@@ -71,3 +71,8 @@ Given("I output some docker-network debugs") do
   pp `docker network ls`
   pp `docker network inspect #{ENV["NETWORK_NAME"]}`
 end
+
+When("I run the service {string} in debug mode with the command {string}") do |service, command|
+  Runner.run_command("docker-compose -f features/fixtures/docker-compose.yml build #{service}")
+  Runner.run_command("docker-compose -f features/fixtures/docker-compose.yml run --use-aliases #{service} #{command}")
+end
